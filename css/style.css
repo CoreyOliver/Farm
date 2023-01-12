@@ -1,22 +1,31 @@
-/* Box Model Hack */
 * {
   box-sizing: border-box;
 }
-
-/* Clear fix hack */
-.clearfix:after {
-     content: ".";
-     display: block;
-     clear: both;
-     visibility: hidden;
-     line-height: 0;
-     height: 0;
+body {
+  background-color: green;
+  display: flex;
 }
-
-.clear {
-	clear: both;
+section{
+  border: black 1px solid;
+  margin: 10px;
+  position: absolute;
+  width: 500px;
+  height: 100px;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  display: flex;
+  justify-content: space-between;
 }
-
-/******************************************
-/* BASE STYLES
-/*******************************************/
+button{
+  height: 25px;
+  
+}
+#canvas1 {
+  border: 10px brown dotted;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background-color: rgb(6, 219, 6);
+}
