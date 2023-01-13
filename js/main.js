@@ -1,20 +1,20 @@
-import {Cow} from './animals'
+import {Cow} from './animals.js'
 
 const canvasF = document.getElementById('canvas_field')
 const canvasB = document.getElementById('canvas_barn')
 const ctxF = canvasF.getContext('2d')
-const ctxB = canvasB.getContext('2d')
+// const ctxB = canvasB.getContext('2d')
 
-CANVASF_HEIGHT = canvasF.height = 500
-CANVASF_WIDTH = canvasF.width = 1000
-CANVASB_HEIGHT = canvasB.height = 210
-CANVASB_WIDTH = canvasB.width = 400
+canvasF.height = 500
+canvasF.width = 1000
+canvasB.height = 210
+canvasB.width = 400
 
 class Farm {
     constructor(width,height) {
         this.width = width
         this.height = height
-        this.animals = []
+        this.animals = [new Cow(this)]
     }
     update(deltaTime) {
         this.animals.forEach( animal => {
@@ -27,7 +27,7 @@ class Farm {
         })
     }
     // addAnimal() {
-
+    //     this.animals.push(new Cow(this))
     // }
 }
 
@@ -36,8 +36,11 @@ let lastTime = 0
 
 function animate(timeStamp) {
     const deltaTime = timeStamp - lastTime
+    lastTime = timeStamp
     ctxF.clearRect(0,0,canvasF.width, canvasF.height)
     farm.update(deltaTime)
     farm.draw(ctxF)
+    console.log(deltaTime)
+    requestAnimationFrame(animate)
 }
 animate(0)
