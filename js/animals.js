@@ -16,7 +16,6 @@
             else {this.frameX = 0}
         }else {this.frameTimer += deltaTime}
     }
-
     draw(context) {
         context.drawImage(this.image, this.frameX * this.width, this.frameY * this.height, this.width, this.height, this.x, this.y, this.width, this.height)
         context.strokeRect(this.x,this.y,this.width,this.height)
@@ -35,6 +34,9 @@ export class Cow extends Animal {
         this.vy = 5
         this.maxFrame = 2
         this.image = cow
+        this.grazing = false
+        this.grazeInterval = 5000
+        this.grazeTimer = 0
     }
     update(deltaTime) {
         super.update(deltaTime)
@@ -57,6 +59,20 @@ export class Cow extends Animal {
         }else if(this.vx === 0 && this.vy === 0) {
             this.frameY = 0
         }
+        this.graze(deltaTime)
+    }
+    graze(deltaTime) {
+        if(this.grazeTimer >= this.grazeInterval) {
+            if (this.vx === 0 && this.vy === 0) {
+                this.vx = Math.random() * 4 - 2
+                this.vy = Math.random() * 4 - 2
+                this.grazeTimer = 0
+            } else {
+                this.vx = 0
+                this.vy = 0
+                this.grazeTimer = 0
+            }
+        } else {this.grazeTimer += deltaTime}
     }
 
 }
